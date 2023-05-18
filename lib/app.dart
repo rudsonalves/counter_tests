@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './pages/settings_page.dart';
 import './theme/theme.dart';
 import './pages/home_page.dart';
 
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomePage.routeName: (context) => const HomePage(),
+        SettingsPage.routeName: (context) => const SettingsPage(),
       },
     );
   }
