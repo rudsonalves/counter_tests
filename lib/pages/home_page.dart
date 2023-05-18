@@ -50,21 +50,13 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        _counter1.decrement();
-                      });
-                    },
+                    onPressed: _counter1.decrement,
                     icon: const Icon(Icons.remove),
                     label: const Text('Down'),
                   ),
                   Text('${_counter1.value}', style: headlineMedium),
                   ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        _counter1.increment();
-                      });
-                    },
+                    onPressed: _counter1.increment,
                     icon: const Icon(Icons.add),
                     label: const Text('Up'),
                   ),
@@ -76,21 +68,13 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        _counter2.decrement();
-                      });
-                    },
+                    onPressed: _counter2.decrement,
                     icon: const Icon(Icons.remove),
                     label: const Text('Down'),
                   ),
                   Text('${_counter2.value}', style: headlineMedium),
                   ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        _counter2.increment();
-                      });
-                    },
+                    onPressed: _counter2.increment,
                     icon: const Icon(Icons.add),
                     label: const Text('Up'),
                   ),
@@ -103,9 +87,7 @@ class _HomePageState extends State<HomePage> {
                     flex: 2,
                     child: TextField(
                       onChanged: (name) {
-                        setState(() {
-                          _person.name = name;
-                        });
+                        _person.name = name;
                       },
                       decoration: const InputDecoration(
                         labelText: 'Name',
@@ -118,9 +100,7 @@ class _HomePageState extends State<HomePage> {
                     flex: 3,
                     child: TextField(
                       onChanged: (surname) {
-                        setState(() {
-                          _person.surname = surname;
-                        });
+                        _person.surname = surname;
                       },
                       decoration: const InputDecoration(
                         labelText: 'Surname',
