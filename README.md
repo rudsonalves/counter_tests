@@ -76,6 +76,53 @@ $ flutter pub add provider
 
 For this code, the provier version 6.0.5 is installed.
 
-The code changes are few, and are described below:
+The code changes are few, and are maked over value_notifier branch. The changes are described below:
 
-1. 
+**app.dart:**
+
+1. a `MultiProvider` is used to warp the `MultiProvider` in the App class:
+
+```
+-   return MaterialApp(...
++   return MultiProvider(
++     providers: [
++       Provider<Counter>(create: (_) => Counter()),
++       Provider<LimitedCounter>(create: (_) => LimitedCounter()),
++       Provider<Person>(create: (_) => Person()),
++     ],
++     child: MaterialApp(...
+```
+with this, Counter, LimitedCounter, and Person objects are instantiated before the `MaterialApp` in the widget tree;
+
+**pages/home_page.dart:**
+
+2. navigation to SettingsPage is changed to. Is not longer pass parameters by arguments. The diff code below shows the changes:
+
+```
+-    Navigator.of(context).pushNamed(
+-      SettingsPage.routeName,
+-      arguments: [_counter1, _counter2, _person],
+-    );
++    Navigator.of(context).pushNamed(SettingsPage.routeName);
+```
+3. the counter1, counter2, and person objects load your values from widget tree by `Provider.of<T>(Context)` comands:
+
+```
+-   final Counter _counter1 = Counter();
+-   final LimitedCounter _counter2 = LimitedCounter();
+-   final Person _person = Person();
++   final Counter counter1 = Provider.of<Counter>(context);
++   final LimitedCounter counter2 = Provider.of<LimitedCounter>(context);
++   final Person person = Provider.of<Person>(context);
+```
+The others changes in this code were cosmetics.
+
+**pages/settings_page.dart**
+
+4. In this module the same strategic is used again. The objects (counter1, counter2, and person) have their values loaded from the widget tree by `Provider.of<T>(Context)` comands. With this the lines 14 to 19 are replaced by:
+```
++   final Counter counter1 = Provider.of<Counter>(context);
++   final LimitedCounter counter2 = Provider.of<LimitedCounter>(context);
++   final Person person = Provider.of<Person>(context);
+```
+And again, I made some cosmetics changes in the code.
