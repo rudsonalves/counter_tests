@@ -64,3 +64,18 @@ AnimatedBuilder(
 ),
 ```
 since the method `fullName` needs to listen for changes in `_person.$name` and `_person.$surname`.
+
+
+# Provider to Transport Objects
+
+In this commit I will use a wrappper around InheritedWidget to make them easier to transport objects around app widget tree. To this is necessary to install a provider package.
+
+```
+$ flutter pub add provider
+```
+
+For this code, the provier version 6.0.5 is installed.
+
+The code changes are few, and are described below:
+
+1. 
