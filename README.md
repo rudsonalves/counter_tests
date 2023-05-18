@@ -1,4 +1,6 @@
-# Basic Counter Project
+# 1. Basic Counter Project
+
+Complete code here: [master](https://github.com/rudsonalves/counter_tests/tree/master)
 
 This is a basic counter project refactored with the structure:
 
@@ -17,7 +19,9 @@ This is a basic counter project refactored with the structure:
 - main.dart - a simple main function to run the project.
 
 
-# ValueNotifier Commit
+# 2. ValueNotifier Commit
+
+Complete code here: [value_notifier](https://github.com/rudsonalves/counter_tests/tree/value_notifier)
 
 In this commit, I added a ValueNotifier to implement application state-management and redraw screen widgets on demand.
 
@@ -66,7 +70,9 @@ AnimatedBuilder(
 since the method `fullName` needs to listen for changes in `_person.$name` and `_person.$surname`.
 
 
-# Provider to Transport Objects
+# 3. Provider to Transport Objects
+
+Complete code here: [provider](https://github.com/rudsonalves/counter_tests/tree/provider)
 
 In this commit I will use a wrappper around InheritedWidget to make them easier to transport objects around app widget tree. To this is necessary to install a provider package.
 
