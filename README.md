@@ -1,4 +1,6 @@
-# Basic Counter Project
+# 1. Basic Counter Project
+
+Complete code here: [master](https://github.com/rudsonalves/counter_tests/tree/master)
 
 This is a basic counter project refactored with the structure:
 
@@ -15,3 +17,4 @@ This is a basic counter project refactored with the structure:
   - theme.dart - a simple theme file to define lightTheme and darkTheme.
 - app.dart - a file with MaterialApp declarations
 - main.dart - a simple main function to run the project.
+
