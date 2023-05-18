@@ -1,6 +1,6 @@
 # 1. Basic Counter Project
 
-Complete code here: [master](https://github.com/rudsonalves/counter_tests/tree/master)
+Full code here: [master](https://github.com/rudsonalves/counter_tests/tree/master)
 
 This is a basic counter project refactored with the structure:
 
@@ -21,7 +21,7 @@ This is a basic counter project refactored with the structure:
 
 # 2. ValueNotifier Commit
 
-Complete code here: [value_notifier](https://github.com/rudsonalves/counter_tests/tree/value_notifier)
+Full code here: [value_notifier](https://github.com/rudsonalves/counter_tests/tree/value_notifier)
 
 In this commit, I added a ValueNotifier to implement application state-management and redraw screen widgets on demand.
 
@@ -72,7 +72,7 @@ since the method `fullName` needs to listen for changes in `_person.$name` and `
 
 # 3. Provider to Transport Objects
 
-Complete code here: [provider](https://github.com/rudsonalves/counter_tests/tree/provider)
+Full code here: [provider](https://github.com/rudsonalves/counter_tests/tree/provider)
 
 In this commit I will use a wrappper around InheritedWidget to make them easier to transport objects around app widget tree. To this is necessary to install a provider package.
 
@@ -132,3 +132,21 @@ The others changes in this code were cosmetics.
 +   final Person person = Provider.of<Person>(context);
 ```
 And again, I made some cosmetics changes in the code.
+
+# 4. MobX
+
+Full code here: [mobx](https://github.com/rudsonalves/counter_tests/tree/mobx)
+
+MobX is a state-management library that makes it simple to connect the reactive data around your application. 
+
+![The heart of MobX are three important concepts:](https://github.com/mobxjs/mobx.dart/raw/master/docs/src/images/mobx-triad.png)
+
+This code was built over provider commit, so install the MobX dependencies:
+```
+$ flutter pub add mobx flutter_mobx
+```
+and some more usefull builder packages:
+```
+$ flutter pub add build_runner --dev
+$ flutter pub add mobx_codegen --dev
+```
