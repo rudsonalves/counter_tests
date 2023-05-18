@@ -121,22 +121,25 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ValueListenableBuilder(
-                          valueListenable: _person.$name,
-                          builder: (context, name, _) {
-                            return Text('Name: "$name"');
-                          }),
+                        valueListenable: _person.$name,
+                        builder: (context, name, _) {
+                          return Text('Name: "$name"');
+                        },
+                      ),
                       ValueListenableBuilder(
-                          valueListenable: _person.$surname,
-                          builder: (context, surname, _) {
-                            return Text('Surname: "$surname"');
-                          }),
+                        valueListenable: _person.$surname,
+                        builder: (context, surname, _) {
+                          return Text('Surname: "$surname"');
+                        },
+                      ),
                       AnimatedBuilder(
-                          animation: Listenable.merge(
-                            [_person.$name, _person.$surname],
-                          ),
-                          builder: (context, _) {
-                            return Text('Full Name: "${_person.fullName}"');
-                          }),
+                        animation: Listenable.merge(
+                          [_person.$name, _person.$surname],
+                        ),
+                        builder: (context, _) {
+                          return Text('Full Name: "${_person.fullName}"');
+                        },
+                      ),
                     ],
                   ),
                 ),
