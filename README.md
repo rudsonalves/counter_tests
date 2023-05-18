@@ -35,7 +35,7 @@ The implementation was made by main changes:
 
 **Modules home_page.dart and settings_page.dart changes:**
 
-3. now the two classes, `HomePage` and `SettingsPage`, have been transformed into `StatelessWidget`. It is not necessary for the classes to be `StateFullWidget`s, since the `ValueListenableBuilder` and `AnimatedBuilder` methods are responsible for redrawing the parts of the screen that are necessary;
+3. now the two classes, `HomePage` and `SettingsPage`, have been transformed into `StatelessWidget`. It is not necessary for the classes to be `StateFullWidget`s, since the `ValueListenableBuilder` and `AnimatedBuilder` methods are responsible for redrawing the parts of the screen that are necessary. With that, all `setState` calls have been removed from the code;
 4. `onPressed` can receive methods directly from instances of classes `HomePage` and `SettingsPage`;
 5. `Text()` widgets now are called by a `ValueListenableBuilder`, replacing lines like this:
 ```
