@@ -15,3 +15,52 @@ This is a basic counter project refactored with the structure:
   - theme.dart - a simple theme file to define lightTheme and darkTheme.
 - app.dart - a file with MaterialApp declarations
 - main.dart - a simple main function to run the project.
+
+
+# ValueNotifier Commit
+
+In this commit, I added a ValueNotifier to implement application state-management and redraw screen widgets on demand.
+
+The transport of instances of the Counter, LimitedCounter, and Person classes continues to be done by the `Navigator.of(context).pushNamed` arguments (line 28+ in the home_page.dart module).
+
+The implementation was made by main changes:
+
+**Models changes:**
+1. in models files, the class attibutes were declared by `ValueNotifier` like diff below:
+```
+- int _value = 0
++ ValueNotifier<int> $value = ValueNotifier(0);
+```
+2. now the setters and getters take and place values in `$value.value`, or `$name.value`/`$surname.value` for the Person class;
+
+**Modules home_page.dart and settings_page.dart changes:**
+
+3. now the two classes, `HomePage` and `SettingsPage`, have been transformed into `StatelessWidget`. It is not necessary for the classes to be `StateFullWidget`s, since the `ValueListenableBuilder` and `AnimatedBuilder` methods are responsible for redrawing the parts of the screen that are necessary;
+4. `onPressed` can receive methods directly from instances of classes `HomePage` and `SettingsPage`;
+5. `Text()` widgets now are called by a `ValueListenableBuilder`, replacing lines like this:
+```
+Text('${_counter1.value}', style: headlineMedium),
+```
+by 
+```
+ValueListenableBuilder(
+  valueListenable: _counter1.$value,
+  builder: (context, value, _) {
+    return Text('$value', style: headlineMedium);
+  },
+),
+```
+and 
+```
+Text('Full Name: ${_person.fullName}'),
+```
+by a AnimatedBuilder like
+```
+AnimatedBuilder(
+  animation: Listenable.merge([_person.$name, _person.$surname]),
+  builder: (context, _) {
+    return Text('Full Name: "${_person.fullName}"');
+  },
+),
+```
+since the method `fullName` needs to listen for changes in `_person.$name` and `_person.$surname`.
