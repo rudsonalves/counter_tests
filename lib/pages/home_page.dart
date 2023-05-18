@@ -5,23 +5,17 @@ import '../models/person.dart';
 import '../models/counter.dart';
 import '../models/limited_counter.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   static const routeName = '/';
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final Counter _counter1 = Counter();
-  final LimitedCounter _counter2 = LimitedCounter();
-  final Person _person = Person();
-
-  @override
   Widget build(BuildContext context) {
     TextStyle? headlineMedium = Theme.of(context).textTheme.headlineMedium;
+    final Counter _counter1 = Counter();
+    final LimitedCounter _counter2 = LimitedCounter();
+    final Person _person = Person();
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +48,11 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.remove),
                     label: const Text('Down'),
                   ),
-                  Text('${_counter1.value}', style: headlineMedium),
+                  ValueListenableBuilder(
+                      valueListenable: _counter1.$value,
+                      builder: (context, value, _) {
+                        return Text('$value', style: headlineMedium);
+                      }),
                   ElevatedButton.icon(
                     onPressed: _counter1.increment,
                     icon: const Icon(Icons.add),
@@ -72,7 +70,11 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.remove),
                     label: const Text('Down'),
                   ),
-                  Text('${_counter2.value}', style: headlineMedium),
+                  ValueListenableBuilder(
+                      valueListenable: _counter2.$value,
+                      builder: (context, value, _) {
+                        return Text('$value', style: headlineMedium);
+                      }),
                   ElevatedButton.icon(
                     onPressed: _counter2.increment,
                     icon: const Icon(Icons.add),
@@ -118,9 +120,23 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Name: ${_person.name}'),
-                      Text('Surname: ${_person.surname}'),
-                      Text('Full Name: ${_person.fullName}'),
+                      ValueListenableBuilder(
+                          valueListenable: _person.$name,
+                          builder: (context, name, _) {
+                            return Text('Name: "$name"');
+                          }),
+                      ValueListenableBuilder(
+                          valueListenable: _person.$surname,
+                          builder: (context, surname, _) {
+                            return Text('Surname: "$surname"');
+                          }),
+                      AnimatedBuilder(
+                          animation: Listenable.merge(
+                            [_person.$name, _person.$surname],
+                          ),
+                          builder: (context, _) {
+                            return Text('Full Name: "${_person.fullName}"');
+                          }),
                     ],
                   ),
                 ),
