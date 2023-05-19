@@ -16,12 +16,12 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    final List<Object> _list =
+    final List<Object> list =
         ModalRoute.of(context)!.settings.arguments as List<Object>;
 
-    final Counter _counter1 = _list[0] as Counter;
-    final LimitedCounter _counter2 = _list[1] as LimitedCounter;
-    final Person _person = _list[2] as Person;
+    final Counter counter1 = list[0] as Counter;
+    final LimitedCounter counter2 = list[1] as LimitedCounter;
+    final Person person = list[2] as Person;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,14 +33,14 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Row(
               children: [
-                Text('Reset Counter 1: ${_counter1.value}'),
+                Text('Reset Counter 1: ${counter1.value}'),
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      _counter1.reset();
+                      counter1.reset();
                     });
                   },
-                  icon: Icon(_counter1.value != 0
+                  icon: Icon(counter1.value != 0
                       ? Icons.radio_button_unchecked_sharp
                       : Icons.check),
                 ),
@@ -48,14 +48,14 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Row(
               children: [
-                Text('Reset Counter 2: ${_counter2.value}'),
+                Text('Reset Counter 2: ${counter2.value}'),
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      _counter2.reset();
+                      counter2.reset();
                     });
                   },
-                  icon: Icon(_counter2.value != 0
+                  icon: Icon(counter2.value != 0
                       ? Icons.radio_button_unchecked_sharp
                       : Icons.check),
                 ),
@@ -63,15 +63,15 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Row(
               children: [
-                Text('Clear Name: ${_person.name}'),
+                Text('Clear Name: "${person.name}"'),
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      _person.name = '';
+                      person.name = '';
                     });
                   },
                   icon: Icon(
-                    _person.name.isNotEmpty
+                    person.name.isNotEmpty
                         ? Icons.radio_button_unchecked_sharp
                         : Icons.check,
                   ),
@@ -80,15 +80,15 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Row(
               children: [
-                Text('Clear Surname: ${_person.surname}'),
+                Text('Clear Surname: "${person.surname}"'),
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      _person.surname = '';
+                      person.surname = '';
                     });
                   },
                   icon: Icon(
-                    _person.surname.isNotEmpty
+                    person.surname.isNotEmpty
                         ? Icons.radio_button_unchecked_sharp
                         : Icons.check,
                   ),

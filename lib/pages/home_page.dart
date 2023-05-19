@@ -138,9 +138,9 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Name: ${_person.name}'),
-                      Text('Surname: ${_person.surname}'),
-                      Text('Full Name: ${_person.fullName}'),
+                      Text('Name: "${_person.name}"'),
+                      Text('Surname: "${_person.surname}"'),
+                      Text('Full Name: "${_person.fullName}"'),
                     ],
                   ),
                 ),
