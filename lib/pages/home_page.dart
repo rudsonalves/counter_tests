@@ -14,8 +14,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle? headlineMedium = Theme.of(context).textTheme.headlineMedium;
-    final Counter counter1 = Provider.of<Counter>(context);
-    final LimitedCounter counter2 = Provider.of<LimitedCounter>(context);
     final Person person = Provider.of<Person>(context);
 
     return Scaffold(
@@ -38,48 +36,52 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Counter 1:'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: counter1.decrement,
-                    icon: const Icon(Icons.remove),
-                    label: const Text('Down'),
-                  ),
-                  ValueListenableBuilder(
-                      valueListenable: counter1.$value,
-                      builder: (context, value, _) {
-                        return Text('$value', style: headlineMedium);
-                      }),
-                  ElevatedButton.icon(
-                    onPressed: counter1.increment,
-                    icon: const Icon(Icons.add),
-                    label: const Text('Up'),
-                  ),
-                ],
-              ),
+              Consumer<Counter>(builder: (context, counter, _) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: counter.decrement,
+                      icon: const Icon(Icons.remove),
+                      label: const Text('Down'),
+                    ),
+                    ValueListenableBuilder(
+                        valueListenable: counter.$value,
+                        builder: (context, value, _) {
+                          return Text('$value', style: headlineMedium);
+                        }),
+                    ElevatedButton.icon(
+                      onPressed: counter.increment,
+                      icon: const Icon(Icons.add),
+                      label: const Text('Up'),
+                    ),
+                  ],
+                );
+              }),
               const SizedBox(height: 20),
               const Text('Counter 2:'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: counter2.decrement,
-                    icon: const Icon(Icons.remove),
-                    label: const Text('Down'),
-                  ),
-                  ValueListenableBuilder(
-                      valueListenable: counter2.$value,
-                      builder: (context, value, _) {
-                        return Text('$value', style: headlineMedium);
-                      }),
-                  ElevatedButton.icon(
-                    onPressed: counter2.increment,
-                    icon: const Icon(Icons.add),
-                    label: const Text('Up'),
-                  ),
-                ],
-              ),
+              Consumer<LimitedCounter>(builder: (context, counter, _) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: counter.decrement,
+                      icon: const Icon(Icons.remove),
+                      label: const Text('Down'),
+                    ),
+                    ValueListenableBuilder(
+                        valueListenable: counter.$value,
+                        builder: (context, value, _) {
+                          return Text('$value', style: headlineMedium);
+                        }),
+                    ElevatedButton.icon(
+                      onPressed: counter.increment,
+                      icon: const Icon(Icons.add),
+                      label: const Text('Up'),
+                    ),
+                  ],
+                );
+              }),
               const SizedBox(height: 20),
               Row(
                 children: [
