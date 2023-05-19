@@ -47,10 +47,11 @@ class HomePage extends StatelessWidget {
                     label: const Text('Down'),
                   ),
                   ValueListenableBuilder(
-                      valueListenable: counter1.$value,
-                      builder: (context, value, _) {
-                        return Text('$value', style: headlineMedium);
-                      }),
+                    valueListenable: counter1.$value,
+                    builder: (context, value, _) {
+                      return Text('$value', style: headlineMedium);
+                    },
+                  ),
                   ElevatedButton.icon(
                     onPressed: counter1.increment,
                     icon: const Icon(Icons.add),
@@ -69,10 +70,11 @@ class HomePage extends StatelessWidget {
                     label: const Text('Down'),
                   ),
                   ValueListenableBuilder(
-                      valueListenable: counter2.$value,
-                      builder: (context, value, _) {
-                        return Text('$value', style: headlineMedium);
-                      }),
+                    valueListenable: counter2.$value,
+                    builder: (context, value, _) {
+                      return Text('$value', style: headlineMedium);
+                    },
+                  ),
                   ElevatedButton.icon(
                     onPressed: counter2.increment,
                     icon: const Icon(Icons.add),
