@@ -69,9 +69,11 @@ class HomePage extends StatelessWidget {
                     icon: const Icon(Icons.remove),
                     label: const Text('Down'),
                   ),
-                  Observer(builder: (context) {
-                    return Text('${counter2.value}', style: headlineMedium);
-                  }),
+                  Observer(
+                    builder: (context) {
+                      return Text('${counter2.value}', style: headlineMedium);
+                    },
+                  ),
                   ElevatedButton.icon(
                     onPressed: counter2.increment,
                     icon: const Icon(Icons.add),

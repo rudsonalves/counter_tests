@@ -45,3 +45,4 @@ app.*.map.json
 
 # MobX auto generated files
 *.g.dart
+.vscode/
