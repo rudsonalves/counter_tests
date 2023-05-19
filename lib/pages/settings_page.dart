@@ -11,12 +11,12 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Object> _list =
+    final List<Object> list =
         ModalRoute.of(context)!.settings.arguments as List<Object>;
 
-    final Counter _counter1 = _list[0] as Counter;
-    final LimitedCounter _counter2 = _list[1] as LimitedCounter;
-    final Person _person = _list[2] as Person;
+    final Counter counter1 = list[0] as Counter;
+    final LimitedCounter counter2 = list[1] as LimitedCounter;
+    final Person person = list[2] as Person;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,14 +27,14 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           children: [
             ValueListenableBuilder(
-              valueListenable: _counter1.$value,
+              valueListenable: counter1.$value,
               builder: (context, value, _) {
                 return Row(
                   children: [
                     Text('Reset Counter 1: $value'),
                     IconButton(
-                      onPressed: _counter1.reset,
-                      icon: Icon(_counter1.value != 0
+                      onPressed: counter1.reset,
+                      icon: Icon(counter1.value != 0
                           ? Icons.radio_button_unchecked_sharp
                           : Icons.check),
                     ),
@@ -43,14 +43,14 @@ class SettingsPage extends StatelessWidget {
               },
             ),
             ValueListenableBuilder(
-              valueListenable: _counter2.$value,
+              valueListenable: counter2.$value,
               builder: (context, value, _) {
                 return Row(
                   children: [
                     Text('Reset Counter 2: $value'),
                     IconButton(
-                      onPressed: _counter2.reset,
-                      icon: Icon(_counter2.value != 0
+                      onPressed: counter2.reset,
+                      icon: Icon(counter2.value != 0
                           ? Icons.radio_button_unchecked_sharp
                           : Icons.check),
                     ),
@@ -59,15 +59,15 @@ class SettingsPage extends StatelessWidget {
               },
             ),
             ValueListenableBuilder(
-              valueListenable: _person.$name,
+              valueListenable: person.$name,
               builder: (context, name, _) {
                 return Row(
                   children: [
                     Text('Clear Name: "$name"'),
                     IconButton(
-                      onPressed: () => _person.name = '',
+                      onPressed: () => person.name = '',
                       icon: Icon(
-                        _person.name.isNotEmpty
+                        person.name.isNotEmpty
                             ? Icons.radio_button_unchecked_sharp
                             : Icons.check,
                       ),
@@ -77,15 +77,15 @@ class SettingsPage extends StatelessWidget {
               },
             ),
             ValueListenableBuilder(
-              valueListenable: _person.$surname,
+              valueListenable: person.$surname,
               builder: (context, surname, _) {
                 return Row(
                   children: [
                     Text('Clear Surname: "$surname"'),
                     IconButton(
-                      onPressed: () => _person.surname = '',
+                      onPressed: () => person.surname = '',
                       icon: Icon(
-                        _person.surname.isNotEmpty
+                        person.surname.isNotEmpty
                             ? Icons.radio_button_unchecked_sharp
                             : Icons.check,
                       ),

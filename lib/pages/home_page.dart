@@ -13,9 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle? headlineMedium = Theme.of(context).textTheme.headlineMedium;
-    final Counter _counter1 = Counter();
-    final LimitedCounter _counter2 = LimitedCounter();
-    final Person _person = Person();
+    final Counter counter1 = Counter();
+    final LimitedCounter counter2 = LimitedCounter();
+    final Person person = Person();
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pushNamed(
                 SettingsPage.routeName,
-                arguments: [_counter1, _counter2, _person],
+                arguments: [counter1, counter2, person],
               );
             },
           ),
@@ -44,17 +44,18 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: _counter1.decrement,
+                    onPressed: counter1.decrement,
                     icon: const Icon(Icons.remove),
                     label: const Text('Down'),
                   ),
                   ValueListenableBuilder(
-                      valueListenable: _counter1.$value,
-                      builder: (context, value, _) {
-                        return Text('$value', style: headlineMedium);
-                      }),
+                    valueListenable: counter1.$value,
+                    builder: (context, value, _) {
+                      return Text('$value', style: headlineMedium);
+                    },
+                  ),
                   ElevatedButton.icon(
-                    onPressed: _counter1.increment,
+                    onPressed: counter1.increment,
                     icon: const Icon(Icons.add),
                     label: const Text('Up'),
                   ),
@@ -66,17 +67,18 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: _counter2.decrement,
+                    onPressed: counter2.decrement,
                     icon: const Icon(Icons.remove),
                     label: const Text('Down'),
                   ),
                   ValueListenableBuilder(
-                      valueListenable: _counter2.$value,
-                      builder: (context, value, _) {
-                        return Text('$value', style: headlineMedium);
-                      }),
+                    valueListenable: counter2.$value,
+                    builder: (context, value, _) {
+                      return Text('$value', style: headlineMedium);
+                    },
+                  ),
                   ElevatedButton.icon(
-                    onPressed: _counter2.increment,
+                    onPressed: counter2.increment,
                     icon: const Icon(Icons.add),
                     label: const Text('Up'),
                   ),
@@ -89,7 +91,7 @@ class HomePage extends StatelessWidget {
                     flex: 2,
                     child: TextField(
                       onChanged: (name) {
-                        _person.name = name;
+                        person.name = name;
                       },
                       decoration: const InputDecoration(
                         labelText: 'Name',
@@ -102,7 +104,7 @@ class HomePage extends StatelessWidget {
                     flex: 3,
                     child: TextField(
                       onChanged: (surname) {
-                        _person.surname = surname;
+                        person.surname = surname;
                       },
                       decoration: const InputDecoration(
                         labelText: 'Surname',
@@ -121,23 +123,23 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ValueListenableBuilder(
-                        valueListenable: _person.$name,
+                        valueListenable: person.$name,
                         builder: (context, name, _) {
                           return Text('Name: "$name"');
                         },
                       ),
                       ValueListenableBuilder(
-                        valueListenable: _person.$surname,
+                        valueListenable: person.$surname,
                         builder: (context, surname, _) {
                           return Text('Surname: "$surname"');
                         },
                       ),
                       AnimatedBuilder(
                         animation: Listenable.merge(
-                          [_person.$name, _person.$surname],
+                          [person.$name, person.$surname],
                         ),
                         builder: (context, _) {
-                          return Text('Full Name: "${_person.fullName}"');
+                          return Text('Full Name: "${person.fullName}"');
                         },
                       ),
                     ],
